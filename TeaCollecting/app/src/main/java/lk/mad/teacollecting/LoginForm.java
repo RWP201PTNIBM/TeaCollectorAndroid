@@ -104,7 +104,7 @@ public class LoginForm extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
 
             if (isSucess) {
-                Intent intent = new Intent(LoginForm.this, AddToList.class);
+                Intent intent = new Intent(LoginForm.this, MainMenu.class);
 
                 intent.putExtra("name", namestr);
 
