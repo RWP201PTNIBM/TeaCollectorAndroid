@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A8A9E8"
+    android:background="#111111"
     tools:context=".AddToList">
 
     <TextView
@@ -12,14 +12,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gothame"
-        android:text="Add Tea Plucker"
+        android:text="New Visit"
         android:textColor="#2AC532"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/txtNewDateView"
+        android:layout_width="94dp"
+        android:layout_height="26dp"
+        android:fontFamily="@font/gothame"
+        android:gravity="center"
+        android:text="Date"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <TextView
+        android:id="@+id/txtNewVistPName"
+        android:layout_width="111dp"
+        android:layout_height="28dp"
+        android:fontFamily="@font/gothame"
+        android:gravity="center"
+        android:text="Path Name"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088" />
 
     <EditText
         android:id="@+id/txtPlucker"
@@ -34,27 +65,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.247" />
 
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="172dp"
         android:layout_height="46dp"
-        android:background="@drawable/blackroundebutton"
+        android:background="@drawable/brownbtnmainmenu"
         android:fontFamily="@font/gothame"
         android:text="Add"
         android:textColor="#44A33A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.37" />
 
     <ListView
         android:id="@+id/listPluckers"
         android:layout_width="410dp"
-        android:layout_height="475dp"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

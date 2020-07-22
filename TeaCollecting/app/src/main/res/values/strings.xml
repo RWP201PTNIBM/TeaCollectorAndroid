@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TeaCollecting</string>
+    <string name="map_key" translatable="false">AIzaSyCGEhHmk2mcTNcrbDHYYIqIAgNi-3Rm4v8</string>
+
 </resources>

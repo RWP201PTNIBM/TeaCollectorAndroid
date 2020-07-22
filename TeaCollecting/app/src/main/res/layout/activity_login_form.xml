@@ -72,7 +72,7 @@
         android:layout_width="190dp"
         android:layout_height="46dp"
         android:fontFamily="@font/gothame"
-        android:background="@drawable/blackroundebutton"
+        android:background="@drawable/selector_xml_name"
         android:text="Login"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

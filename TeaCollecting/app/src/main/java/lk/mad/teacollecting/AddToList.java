@@ -43,14 +43,15 @@ public class AddToList extends AppCompatActivity {
         Add = (Button) findViewById(R.id.btnAdd);
         connnectionClass = new ConnnectionClass();
         progressDialog = new ProgressDialog(this);
-
-        Add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddToList.DoAddList DoAddList = new AddToList.DoAddList();
-                DoAddList.execute();
-            }
-        });
+        AddToList.DoAddList DoAddList = new AddToList.DoAddList();
+        DoAddList.execute();
+//        Add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AddToList.DoAddList DoAddList = new AddToList.DoAddList();
+//                DoAddList.execute();
+//            }
+//        });
 
     }
     public class DoAddList extends AsyncTask<String, String, String> {

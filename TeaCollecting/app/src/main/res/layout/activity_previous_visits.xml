@@ -5,85 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111111"
-    tools:context=".MainMenu">
+    tools:context=".PreviousVisits">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="259dp"
-        android:layout_height="81dp"
+        android:id="@+id/lblteaplukcer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/gothame"
-        android:gravity="center"
-        android:text="Tea Collection Assistant"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:text="Visits"
+        android:textColor="#2AC532"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintVertical_bias="0.022" />
 
-    <Button
-        android:id="@+id/btnPath"
-        android:layout_width="267dp"
-        android:layout_height="45dp"
-        android:background="@drawable/mainall_button"
+    <TextView
+        android:id="@+id/txtNewDateView"
+        android:layout_width="94dp"
+        android:layout_height="26dp"
         android:fontFamily="@font/gothame"
-        android:text="Path"
+        android:gravity="center"
+        android:text="Date"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <TextView
+        android:id="@+id/txtNewVistPName"
+        android:layout_width="111dp"
+        android:layout_height="28dp"
+        android:fontFamily="@font/gothame"
+        android:gravity="center"
+        android:text="Path Name"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.323" />
+        app:layout_constraintVertical_bias="0.088" />
 
-    <Button
-        android:id="@+id/btnVisits"
-        android:layout_width="267dp"
-        android:layout_height="45dp"
-        android:background="@drawable/mainall_button"
-        android:fontFamily="@font/gothame"
-        android:text="Visits"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
+    <EditText
+        android:id="@+id/txtVisitPlucker"
+        android:layout_width="323dp"
+        android:layout_height="49dp"
+        android:background="@drawable/share_rounded_corner_with_border"
+        android:ems="10"
+        android:hint="Plukcer ID"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.247" />
 
-    <Button
-        android:id="@+id/btnNeWVisit"
-        android:layout_width="267dp"
-        android:layout_height="45dp"
-        android:background="@drawable/mainall_button"
-        android:fontFamily="@font/gothame"
-        android:text="New Visit"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
+    <ListView
+        android:id="@+id/listVisitPluckers"
+        android:layout_width="410dp"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
-
-    <Button
-        android:id="@+id/btnstrtcol"
-        android:layout_width="267dp"
-        android:layout_height="45dp"
-        android:background="@drawable/mainall_button"
-        android:fontFamily="@font/gothame"
-        android:text="Start Collecting"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.779" />
-
-
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
