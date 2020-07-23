@@ -48,11 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 doregister.execute();
             }
         });
-
-
     }
 
-    public class Doregister extends AsyncTask<String,String,String> {
+    public class Doregister extends AsyncTask<String, String, String> {
 
         String namestr = name.getText().toString();
         String emailStr = email.getText().toString();
@@ -67,26 +65,23 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            if(namestr.trim().equals("")|| emailStr.trim().equals("") ||passStr.trim().equals(""))
+            if (namestr.trim().equals("") || emailStr.trim().equals("") || passStr.trim().equals(""))
                 z = "Please enter all fields....";
-            else
-            {
+            else {
                 try {
                     Connection con = connnectionClass.CONN();
                     if (con == null) {
                         z = "Please check your internet connection";
                     } else {
-                        String query="insert into android values('"+namestr+"','"+emailStr+"','"+passStr+"')";
+                        String query = "insert into android values('" + namestr + "','" + emailStr + "','" + passStr + "')";
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
                         z = "Register successfull";
-                        isSucess=true;
+                        isSucess = true;
                     }
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     isSucess = false;
-                    z = "Exceptions"+ex;
+                    z = "Exceptions" + ex;
                 }
             }
             return z;
@@ -94,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            if(isSucess){
-                Toast.makeText(getBaseContext(), ""+z,Toast.LENGTH_LONG).show();
+            if (isSucess) {
+                Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(MainActivity.this, LoginForm.class);
                 startActivity(intent);

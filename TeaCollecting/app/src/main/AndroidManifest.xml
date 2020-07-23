@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SaveVisit"></activity>
-        <activity android:name=".AddToList"></activity>
+        <activity android:name=".PreviousVisits"></activity>
+        <activity android:name=".PathMapView" />
+        <activity android:name=".MainMenu" />
+        <activity android:name=".SaveVisit" />
+        <activity android:name=".AddToList" />
         <activity android:name=".LoginForm">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
