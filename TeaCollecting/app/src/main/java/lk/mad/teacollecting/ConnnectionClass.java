@@ -14,9 +14,9 @@ public class ConnnectionClass {
     String classs = "com.mysql.jdbc.Driver";
 
 //    String url = "jdbc:mysql://127.0.0.1:3306/androidtest?";
+//GRANT ALL ON *.* to root@'192.168.8.101' IDENTIFIED BY '';
 
-
-    String url = "jdbc:mysql://192.168.8.100/androidtest";
+    String url = "jdbc:mysql://192.168.8.100/tea_collector_db";
     String un = "root";
     String password = "";
 

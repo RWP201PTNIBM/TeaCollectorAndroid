@@ -30,7 +30,9 @@ public class MainMenu extends AppCompatActivity {
         path.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, MapsActivity.class);
 
+                startActivity(intent);
             }
         });
 
