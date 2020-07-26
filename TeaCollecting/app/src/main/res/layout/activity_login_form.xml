@@ -21,8 +21,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="253dp"
-        android:layout_height="50dp"
+        android:layout_width="257dp"
+        android:layout_height="79dp"
         android:fontFamily="@font/gothame"
         android:gravity="center"
         android:text="Driver Assitance"
@@ -41,7 +41,7 @@
         android:layout_height="50dp"
         android:background="@drawable/share_rounded_corner_with_border"
         android:ems="10"
-        android:hint="Email"
+        android:hint="User Name"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

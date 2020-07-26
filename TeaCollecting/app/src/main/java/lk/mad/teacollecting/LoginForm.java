@@ -72,13 +72,13 @@ public class LoginForm extends AppCompatActivity {
                         z = "Please check your internet connection";
                     } else {
 //                        String query="select * from  android where name('"+namestr+"','"+emailStr+"','"+passStr+"')";
-                        String query = " select * from android where email='" + namestr + "' and pass = '" + passStr + "'";
+                        String query = " select * from driver where username='" + namestr + "' and password = '" + passStr + "'";
 
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         while (rs.next()) {
-                            nme = rs.getString(2);
-                            pas = rs.getString(3);
+                            nme = rs.getString(4);
+                            pas = rs.getString(5);
 
 
                             if (nme.equals(namestr) && pas.equals(passStr)) {

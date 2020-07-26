@@ -75,7 +75,7 @@ public class AddToList extends AppCompatActivity {
 
 
                     } else {
-                        String query = "select name from android";
+                        String query = "select * from driver";
 
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
@@ -85,7 +85,7 @@ public class AddToList extends AppCompatActivity {
 
                         while (rs.next()) {
                             Map<String, String> datanum = new HashMap<String, String>();
-                            datanum.put("A", rs.getString(1).toString());
+                            datanum.put("A", rs.getString(4).toString());
                             data.add(datanum);
                         }
                         String[] fromwhere = { "A" };
@@ -93,7 +93,7 @@ public class AddToList extends AppCompatActivity {
                         ADAhere = new SimpleAdapter(AddToList.this, data,
                                 R.layout.listtemplate, fromwhere, viewswhere);
                         while (rs.next()) {
-                            z += rs.getString(1).toString() + "\n";
+                            z += rs.getString(4).toString() + "\n";
                         }
 
                     }
