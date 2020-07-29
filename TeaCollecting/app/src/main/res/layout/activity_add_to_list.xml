@@ -71,7 +71,7 @@
         android:id="@+id/btnAdd"
         android:layout_width="172dp"
         android:layout_height="46dp"
-        android:background="@drawable/brownbtnmainmenu"
+        android:background="@drawable/selector_xml_addlistbtn"
         android:fontFamily="@font/gothame"
         android:text="Add"
         android:textColor="#44A33A"

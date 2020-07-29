@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,11 +90,13 @@ public class AddToList extends AppCompatActivity {
                             data.add(datanum);
                         }
                         String[] fromwhere = { "A" };
+
                         int[] viewswhere = { R.id.lblteapluckcer };
                         ADAhere = new SimpleAdapter(AddToList.this, data,
                                 R.layout.listtemplate, fromwhere, viewswhere);
                         while (rs.next()) {
                             z += rs.getString(4).toString() + "\n";
+
                         }
 
                     }
