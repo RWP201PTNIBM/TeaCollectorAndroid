@@ -23,11 +23,11 @@
 
     <TextView
         android:id="@+id/txtNewDateView"
-        android:layout_width="94dp"
-        android:layout_height="26dp"
+        android:layout_width="142dp"
+        android:layout_height="40dp"
         android:fontFamily="@font/gothame"
         android:gravity="center"
-        android:text="Date"
+        android:text=""
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,12 +38,12 @@
         app:layout_constraintVertical_bias="0.156" />
 
     <TextView
-        android:id="@+id/txtNewVistPName"
+        android:id="@+id/txtNewVistName"
         android:layout_width="111dp"
         android:layout_height="28dp"
         android:fontFamily="@font/gothame"
         android:gravity="center"
-        android:text="Path Name"
+        android:text=""
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

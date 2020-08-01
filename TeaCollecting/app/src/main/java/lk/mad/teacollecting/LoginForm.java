@@ -55,6 +55,7 @@ public class LoginForm extends AppCompatActivity {
         boolean isSucess = false;
 
         String nme, pas;
+        int pathid;
 
         @Override
         protected void onPreExecute() {
@@ -79,6 +80,7 @@ public class LoginForm extends AppCompatActivity {
                         while (rs.next()) {
                             nme = rs.getString(4);
                             pas = rs.getString(5);
+                            pathid = rs.getInt(9);
 
 
                             if (nme.equals(namestr) && pas.equals(passStr)) {
@@ -107,6 +109,7 @@ public class LoginForm extends AppCompatActivity {
                 Intent intent = new Intent(LoginForm.this, MainMenu.class);
 
                 intent.putExtra("name", namestr);
+                intent.putExtra("pathid", pathid);
 
                 startActivity(intent);
             }

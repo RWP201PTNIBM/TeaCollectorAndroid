@@ -12,26 +12,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class AddToList extends AppCompatActivity {
 
     ListView list;
     EditText pluckerId;
+    TextView txtNewVistName, txtNewDateView;
     Button Add;
     ConnnectionClass connnectionClass;
     ProgressDialog progressDialog;
     SimpleAdapter ADAhere;
-
+    int pathid;
+    String drivername;
+    String pathnametext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +46,17 @@ public class AddToList extends AppCompatActivity {
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        list = (ListView) findViewById(R.id.listPluckers);
-        Add = (Button) findViewById(R.id.btnAdd);
         connnectionClass = new ConnnectionClass();
         progressDialog = new ProgressDialog(this);
+        list = (ListView) findViewById(R.id.listPluckers);
+        Add = (Button) findViewById(R.id.btnAdd);
+        txtNewVistName = (TextView) findViewById(R.id.txtNewVistName);
+        txtNewDateView = (TextView) findViewById(R.id.txtNewDateView);
+
+        String date_n = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());   // get Current Date in this
+        txtNewDateView.setText(date_n);
+        drivername = getIntent().getExtras().getString("name");
+        pathid = getIntent().getExtras().getInt("pathid");
         AddToList.DoAddList DoAddList = new AddToList.DoAddList();
         DoAddList.execute();
 //        Add.setOnClickListener(new View.OnClickListener() {
@@ -77,9 +90,13 @@ public class AddToList extends AppCompatActivity {
 
                     } else {
                         String query = "select * from driver";
+                        String query2 = "select path_name from path WHERE path_id='" + pathid + "'";
 
                         Statement stmt = con.createStatement();
+                        Statement stmt2 = con.createStatement();
+
                         ResultSet rs = stmt.executeQuery(query);
+                        ResultSet rs2 = stmt2.executeQuery(query2);
 
                         List<Map<String, String>> data = null;
                         data = new ArrayList<Map<String, String>>();
@@ -98,6 +115,9 @@ public class AddToList extends AppCompatActivity {
                             z += rs.getString(4).toString() + "\n";
 
                         }
+                        while (rs2.next()) {
+                            pathnametext = rs2.getString("path_name");
+                        }
 
                     }
                 } catch (Exception ex) {
@@ -110,6 +130,8 @@ public class AddToList extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             list.setAdapter(ADAhere);
+            txtNewVistName.setText(pathnametext);
+
         }
     }
 }
