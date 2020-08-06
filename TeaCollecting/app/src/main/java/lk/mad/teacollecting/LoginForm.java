@@ -55,7 +55,7 @@ public class LoginForm extends AppCompatActivity {
         boolean isSucess = false;
 
         String nme, pas;
-        int pathid;
+        int pathid,driver_id;
 
         @Override
         protected void onPreExecute() {
@@ -78,6 +78,7 @@ public class LoginForm extends AppCompatActivity {
                         Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);
                         while (rs.next()) {
+                            driver_id = rs.getInt(1);
                             nme = rs.getString(4);
                             pas = rs.getString(5);
                             pathid = rs.getInt(9);
@@ -107,7 +108,7 @@ public class LoginForm extends AppCompatActivity {
 
             if (isSucess) {
                 Intent intent = new Intent(LoginForm.this, MainMenu.class);
-
+                intent.putExtra("driver_id", driver_id);
                 intent.putExtra("name", namestr);
                 intent.putExtra("pathid", pathid);
 

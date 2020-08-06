@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,7 +32,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ConnnectionClass connnectionClass;
     ProgressDialog progressDialog;
     ArrayList<Location> listLanLong = new ArrayList<Location>();
-
+    TextView txtpathname;
+    int pathid;
+    String pathnametext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         connnectionClass = new ConnnectionClass();
+        pathid = getIntent().getExtras().getInt("pathid");
         progressDialog = new ProgressDialog(this);
+        txtpathname = (TextView) findViewById(R.id.txtPathNamePath);
         mapFragment.getMapAsync(this);
         MapsActivity.DoAddList doregister = new MapsActivity.DoAddList();
         doregister.execute();
@@ -65,19 +70,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if (con == null) {
                     z = "Please check your internet connection";
 
-
                 } else {
                     String query = "select * from collection_point";
+                    String query2 = "select path_name from path WHERE path_id='" + pathid + "'";
 
                     Statement stmt = con.createStatement();
+                    Statement stmt2 = con.createStatement();
+
                     ResultSet rs = stmt.executeQuery(query);
+                    ResultSet rs2 = stmt2.executeQuery(query2);
 
 
                     while (rs.next()) {
                         Location locate = new Location(Double.parseDouble(rs.getString(4)), Double.parseDouble(rs.getString(3)));
                         listLanLong.add(locate);
                     }
-
+                    while (rs2.next()) {
+                        pathnametext = rs2.getString("path_name");
+                    }
 
                     isSucess = true;
 
@@ -91,7 +101,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected void onPostExecute(String s) {
-            float zoomLevel = 10.0f;
+            float zoomLevel =8.0f;
+            txtpathname.setText(pathnametext);
 
             for (int i = 0; i < listLanLong.size(); i++) {
                 Log.e("", "--------jjj");

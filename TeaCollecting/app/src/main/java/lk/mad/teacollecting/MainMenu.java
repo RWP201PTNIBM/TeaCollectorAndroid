@@ -13,7 +13,7 @@ public class MainMenu extends AppCompatActivity {
 
     Button path, visits, newVisits, startCollecting;
     TextView txtname;
-    int pathid;
+    int pathid,driver_id;
     String drivername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class MainMenu extends AppCompatActivity {
         startCollecting = (Button) findViewById(R.id.btnstrtcol);
         drivername = getIntent().getExtras().getString("name");
         pathid = getIntent().getExtras().getInt("pathid");
+        driver_id = getIntent().getExtras().getInt("driver_id");
 
         txtname.setText("Hello " + drivername);
 
@@ -59,6 +60,7 @@ public class MainMenu extends AppCompatActivity {
                 Intent intent = new Intent(MainMenu.this, AddToList.class);
                 intent.putExtra("name", drivername);
                 intent.putExtra("pathid", pathid);
+                intent.putExtra("driver_id", driver_id);
                 startActivity(intent);
             }
         });
@@ -66,7 +68,11 @@ public class MainMenu extends AppCompatActivity {
         startCollecting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainMenu.this, startCollecting.class);
+                intent.putExtra("name", drivername);
+                intent.putExtra("pathid", pathid);
+                intent.putExtra("driver_id", driver_id);
+                startActivity(intent);
             }
         });
 
