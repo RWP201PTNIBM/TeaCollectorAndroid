@@ -127,7 +127,7 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
 
                     while (rs.next()) {
 
-                        VisitDetails visitDetails = new VisitDetails(rs.getInt("s.supplier_id"),rs.getInt("cl.no_of_bags"),rs.getString("s.supplier_name"),rs.getDouble("cl.weight "));
+                        VisitDetails visitDetails = new VisitDetails(rs.getInt("supplier_id"),rs.getInt("no_of_bags"),rs.getString("supplier_name"),rs.getDouble("weight"));
                         VisitDetails.add(visitDetails);
                     }
                     adapter1 =  new Four_cloumn_list_adpter(PreviousVisits.this,R.layout.list_adapter_four_view, VisitDetails);
