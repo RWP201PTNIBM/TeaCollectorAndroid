@@ -71,8 +71,8 @@
 
     <ListView
         android:id="@+id/listVisitPluckers"
-        android:layout_width="410dp"
-        android:layout_height="400dp"
+        android:layout_width="406dp"
+        android:layout_height="487dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

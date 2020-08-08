@@ -6,8 +6,10 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,6 +30,9 @@ public class PreviousVisits extends AppCompatActivity {
     int pathid;
     String drivername;
     String pathnametext;
+    ListView listVisitPluckers;
+Four_cloumn_list_adpter adapter1;
+ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class PreviousVisits extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         txtNewVistPName = (TextView) findViewById(R.id.txtNewVistPName);
         txtNewDatePView = (TextView) findViewById(R.id.txtNewDatePView);
+        listVisitPluckers = (ListView) findViewById(R.id.listVisitPluckers);
 
         String date_n = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());   // get Current Date in this
         txtNewDatePView.setText(date_n);
@@ -47,12 +53,15 @@ public class PreviousVisits extends AppCompatActivity {
         pathid = getIntent().getExtras().getInt("pathid");
         PreviousVisits.DoPrevoisList DoPrevoisList = new PreviousVisits.DoPrevoisList();
         DoPrevoisList.execute();
+
+        PreviousVisits.DoPreviiosVisits DoPreviiosVisits = new PreviousVisits.DoPreviiosVisits();
+        DoPreviiosVisits.execute();
+
     }
     public class DoPrevoisList extends AsyncTask<String, String, String> {
 
         String z = "";
         boolean isSucess = false;
-
 
         @Override
         protected void onPreExecute() {
@@ -93,5 +102,47 @@ public class PreviousVisits extends AppCompatActivity {
 
         }
     }
+    public class DoPreviiosVisits extends AsyncTask<String, String, String> {
+        String z = "";
+        boolean isSucess = false;
 
+        @Override
+        protected void onPreExecute() {
+            progressDialog.setMessage("Loading ......");
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try {
+                Connection con = connnectionClass.CONN();
+                if (con == null) {
+                    z = "Please check your internet connection";
+                } else {
+                    String query = "SELECT s.supplier_id, cl.no_of_bags, s.supplier_name, cl.weight FROM supplier s,collection_log cl WHERE s.supplier_id = cl.supplier_id";
+
+                    Statement stmt = con.createStatement();
+
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    while (rs.next()) {
+
+                        VisitDetails visitDetails = new VisitDetails(rs.getInt("s.supplier_id"),rs.getInt("cl.no_of_bags"),rs.getString("s.supplier_name"),rs.getDouble("cl.weight "));
+                        VisitDetails.add(visitDetails);
+                    }
+                    adapter1 =  new Four_cloumn_list_adpter(PreviousVisits.this,R.layout.list_adapter_four_view, VisitDetails);
+                }
+            } catch (Exception ex) {
+                isSucess = false;
+                z = "Exceptions" + ex;
+            }
+            return z;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(getBaseContext(), "asdsadsadas", Toast.LENGTH_LONG).show();
+            listVisitPluckers.setAdapter(adapter1);
+        }
+    }
 }
