@@ -110,6 +110,8 @@ public class AddToList extends AppCompatActivity {
                 supplierid = adapter.getItem(position).getSup_id();
                 AddToList.DoAddVisit DoAddVisit = new AddToList.DoAddVisit();
                 DoAddVisit.execute();
+
+                Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_LONG).show();
             }
 
         });
@@ -198,6 +200,7 @@ public class AddToList extends AppCompatActivity {
                     }
                     String query4 = "INSERT INTO `visit`(`date`, `status`, `driver_id`, `cp_id`, `supplier_id`) VALUES ('" + date + "',0,'" + driver_id + "','" + collectpnt_id + "','" + supplierid + "')";
                     Statement stmt4 = con.createStatement();
+
                     stmt4.executeUpdate(query4);
                 }
             } catch (Exception ex) {
@@ -210,7 +213,6 @@ public class AddToList extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             progressDialog.hide();
-
 
         }
     }

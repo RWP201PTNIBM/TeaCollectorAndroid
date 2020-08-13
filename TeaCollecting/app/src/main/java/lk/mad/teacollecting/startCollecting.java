@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,8 +22,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 
 public class startCollecting extends FragmentActivity implements OnMapReadyCallback {
@@ -34,6 +33,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
     ListView startListView;
     ThreeColumn_ListAdapter adapter;
     ArrayList<Supplier> Supplier = new ArrayList<Supplier>();
+    ArrayList<Location> listLanLong = new ArrayList<Location>();
     int supplierid, pathid, driver_id;
     String supplier_Name;
 
@@ -86,18 +86,28 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
                 if (con == null) {
                     z = "Please check your internet connection";
                 } else {
-                    String query = "select * from supplier";
+                    String query = "select s.* from supplier s,collection_point cp, visit v  WHERE cp.path_id='" + pathid + "' and cp.cp_id = v.cp_id and v.date = curdate() and cp.cp_id = s.cp_id and s.supplier_id = v.supplier_id";
+                    String query2 = "select cp.* from collection_point cp, visit v, path p WHERE cp.path_id='" + pathid + "' and cp.cp_id = v.cp_id and v.date = curdate()";
 
                     Statement stmt = con.createStatement();
+                    Statement stmt2 = con.createStatement();
+
                     ResultSet rs = stmt.executeQuery(query);
+                    ResultSet rs2 = stmt2.executeQuery(query2);
 
 
                     while (rs.next()) {
                         Supplier supplier = new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3));
                         Supplier.add(supplier);
                     }
+
+                    while (rs2.next()) {
+                        Location locate = new Location(Double.parseDouble(rs2.getString(4)), Double.parseDouble(rs2.getString(3)), rs2.getString(2));
+                        listLanLong.add(locate);
+                    }
                     adapter = new ThreeColumn_ListAdapter(startCollecting.this, R.layout.list_adapter_view, Supplier);
 
+                    isSucess = true;
                 }
             } catch (Exception ex) {
                 isSucess = false;
@@ -108,7 +118,18 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
 
         @Override
         protected void onPostExecute(String s) {
+            float zoomLevel = 9.0f;
+
             startListView.setAdapter(adapter);
+
+            for (int i = 0; i < listLanLong.size(); i++) {
+                Log.e("", "--------jjj");
+                LatLng sydny = new LatLng(listLanLong.get(i).getLat(), listLanLong.get(i).getLon());
+                mMap.addMarker(new MarkerOptions().position(sydny).title(listLanLong.get(i).getName()));
+//                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydny));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydny, zoomLevel));
+
+            }
         }
     }
 
@@ -116,18 +137,19 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        float zoomLevel = 11.0f;
+//        float zoomLevel = 11.0f;
+
 //         Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(7.940096, 81.019539);
-        LatLng weee = new LatLng(7.940976, 80.9981483);
-
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Polonnaruwa"));
-        mMap.addMarker(new MarkerOptions().position(weee).title("Marker in Polonnaruwa Wewa"));
-//        This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(weee));
-
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        LatLng sydney = new LatLng(7.940096, 81.019539);
+//        LatLng weee = new LatLng(7.940976, 80.9981483);
+//
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Polonnaruwa"));
+//        mMap.addMarker(new MarkerOptions().position(weee).title("Marker in Polonnaruwa Wewa"));
+////        This goes up to 21
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(weee));
+//
+//
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
