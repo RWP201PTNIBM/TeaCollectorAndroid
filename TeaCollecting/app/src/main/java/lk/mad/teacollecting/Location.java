@@ -3,10 +3,17 @@ package lk.mad.teacollecting;
 public class Location {
     double lat;
     double lon;
+    String name;
 
     public Location(double lat, double lon) {
         this.lat = lat;
         this.lon = lon;
+    }
+
+    public Location(double lat, double lon, String name) {
+        this.lat = lat;
+        this.lon = lon;
+        this.name = name;
     }
 
     public double getLat() {
@@ -23,5 +30,11 @@ public class Location {
 
     public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    public String getName() { return this.name; }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

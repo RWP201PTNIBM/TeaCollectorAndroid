@@ -71,7 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     z = "Please check your internet connection";
 
                 } else {
-                    String query = "select * from collection_point";
+                    String query = "select * from collection_point WHERE path_id='" + pathid + "'";
                     String query2 = "select path_name from path WHERE path_id='" + pathid + "'";
 
                     Statement stmt = con.createStatement();
