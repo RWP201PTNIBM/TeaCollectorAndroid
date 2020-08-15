@@ -34,7 +34,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
     ThreeColumn_ListAdapter adapter;
     ArrayList<Supplier> Supplier = new ArrayList<Supplier>();
     ArrayList<Location> listLanLong = new ArrayList<Location>();
-    int supplierid, pathid, driver_id;
+    int supplierid, pathid, driver_id, visit_id;
     String supplier_Name;
 
     @Override
@@ -55,6 +55,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
         startListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View convertView, int position, long id) {
+                visit_id = adapter.getItem(position).getVisit_id();
                 supplierid = adapter.getItem(position).getSup_id();
                 supplier_Name = adapter.getItem(position).getSup_Name();
                 Intent intent = new Intent(startCollecting.this, SaveVisit.class);
@@ -62,6 +63,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
                 intent.putExtra("pathid", pathid);
                 intent.putExtra("supplierid", supplierid);
                 intent.putExtra("supplier_Name", supplier_Name);
+                intent.putExtra("visit_id", visit_id);
                 startActivity(intent);
             }
         });
@@ -86,8 +88,8 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
                 if (con == null) {
                     z = "Please check your internet connection";
                 } else {
-                    String query = "select s.* from supplier s,collection_point cp, visit v  WHERE cp.path_id='" + pathid + "' and cp.cp_id = v.cp_id and v.date = curdate() and cp.cp_id = s.cp_id and s.supplier_id = v.supplier_id";
-                    String query2 = "select cp.* from collection_point cp, visit v, path p WHERE cp.path_id='" + pathid + "' and cp.cp_id = v.cp_id and v.date = curdate()";
+                    String query = "select s.*, v.visit_id from supplier s,collection_point cp, visit v  WHERE cp.path_id='" + pathid + "' and cp.cp_id = v.cp_id and v.date = curdate() and cp.cp_id = s.cp_id and s.supplier_id = v.supplier_id and v.status = 0 ";
+                    String query2 = "select cp.* from collection_point cp, visit v, path p WHERE cp.path_id='" + pathid + "' and cp.cp_id = v.cp_id and v.date = curdate() and v.status = 0";
 
                     Statement stmt = con.createStatement();
                     Statement stmt2 = con.createStatement();
@@ -97,7 +99,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
 
 
                     while (rs.next()) {
-                        Supplier supplier = new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3));
+                        Supplier supplier = new Supplier(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getInt(6));
                         Supplier.add(supplier);
                     }
 
