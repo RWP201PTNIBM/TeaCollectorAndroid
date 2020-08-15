@@ -26,7 +26,7 @@ public class SaveVisit extends AppCompatActivity {
     EditText txtTeaBags, txtWeight;
     Button btnok;
     String supplier_name, date_to, pathnametext;
-    int path_id, supplier_id;
+    int path_id, supplier_id, visit_id,driver_id;
     ConnnectionClass connnectionClass;
     ProgressDialog progressDialog;
 
@@ -51,6 +51,8 @@ public class SaveVisit extends AppCompatActivity {
         supplier_name = getIntent().getExtras().getString("supplier_Name");
         supplier_id = getIntent().getExtras().getInt("supplierid");
         path_id = getIntent().getExtras().getInt("pathid");
+        driver_id = getIntent().getExtras().getInt("driver_id");
+        visit_id = getIntent().getExtras().getInt("visit_id");
         txtSupplierName.setText(supplier_name + "  " + supplier_id);
 
         SaveVisit.GetPathName GetPathName = new SaveVisit.GetPathName();
@@ -62,6 +64,10 @@ public class SaveVisit extends AppCompatActivity {
             public void onClick(View v) {
                 SaveVisit.Doregister Doregister = new SaveVisit.Doregister();
                 Doregister.execute();
+                //Toast.makeText(getBaseContext(), "ffffffffffff", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(SaveVisit.this, startCollecting.class);
+//                startActivity(intent);
+
             }
         });
     }
@@ -126,9 +132,13 @@ public class SaveVisit extends AppCompatActivity {
                     if (con == null) {
                         z = "Please check your internet connection";
                     } else {
-                        String query = "insert into collection_log(`supplier_id`,`weight`, `no_of_bags`, `status`, `visit_id`) values('" + supplier_id + "','" + teaWeight + "','" + teaBags + "',0,1)";
+                        String query = "insert into collection_log(`supplier_id`,`weight`, `no_of_bags`, `status`, `visit_id`) values('" + supplier_id + "','" + teaWeight + "','" + teaBags + "',0,"+ visit_id +");";
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
+
+                        String query2 = "UPDATE visit SET status = 1 WHERE visit_id = "+ visit_id +" ";
+                        Statement stmt2 = con.createStatement();
+                        stmt2.executeUpdate(query2);
                         z = "Register successfull";
                         isSucess = true;
                     }
@@ -143,7 +153,10 @@ public class SaveVisit extends AppCompatActivity {
         protected void onPostExecute(String s) {
             if (isSucess) {
                 Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(SaveVisit.this, startCollecting.class);
+
+                Intent intent = new Intent(SaveVisit.this, MainMenu.class);
+                intent.putExtra("driver_id", driver_id);
+                intent.putExtra("pathid", path_id);
                 startActivity(intent);
             }
             progressDialog.hide();
