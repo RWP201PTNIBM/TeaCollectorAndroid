@@ -32,7 +32,7 @@ public class MainMenu extends AppCompatActivity {
         pathid = getIntent().getExtras().getInt("pathid");
         driver_id = getIntent().getExtras().getInt("driver_id");
 
-        txtname.setText("Hello " + drivername);
+        txtname.setText("Hello " + Driver.getName());
 
         path.setOnClickListener(new View.OnClickListener() {
             @Override

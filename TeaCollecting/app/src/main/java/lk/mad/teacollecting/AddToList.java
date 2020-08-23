@@ -1,11 +1,8 @@
 package lk.mad.teacollecting;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,7 +10,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -23,16 +19,10 @@ import android.widget.Toast;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -73,12 +63,14 @@ public class AddToList extends AppCompatActivity {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
 
+
+
+
         txtNewDateView.setText(date_n);
         drivername = getIntent().getExtras().getString("name");
         pathid = getIntent().getExtras().getInt("pathid");
         driver_id= getIntent().getExtras().getInt("driver_id");
         calendar=Calendar.getInstance();
-
 
 
         AddToList.DoAddList DoAddList = new AddToList.DoAddList();
@@ -133,9 +125,8 @@ public class AddToList extends AppCompatActivity {
                     if (con == null) {
                         z = "Please check your internet connection";
                     } else {
-                        String query = "select * from supplier";
+                        String query = "select * from supplier s, collection_point cp WHERE s.cp_id = cp.cp_id AND cp.path_id='" + pathid + "'";
                         String query2 = "select path_name from path WHERE path_id='" + pathid + "'";
-
                         Statement stmt = con.createStatement();
                         Statement stmt2 = con.createStatement();
 

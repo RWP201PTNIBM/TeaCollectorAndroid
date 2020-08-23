@@ -2,10 +2,15 @@ package lk.mad.teacollecting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -16,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -26,11 +32,14 @@ public class PreviousVisits extends AppCompatActivity {
 
     ConnnectionClass connnectionClass;
     ProgressDialog progressDialog;
-    TextView txtNewVistPName, txtNewDatePView;
+    TextView txtNewVistPName, txtNewDatePView, txtSelectDate;
     int pathid;
     String drivername;
     String pathnametext;
     ListView listVisitPluckers;
+    private Calendar calendar;
+    private String date;
+    DatePickerDialog.OnDateSetListener setListener;
 Four_cloumn_list_adpter adapter1;
 ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
 
@@ -46,6 +55,35 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
         txtNewVistPName = (TextView) findViewById(R.id.txtNewVistPName);
         txtNewDatePView = (TextView) findViewById(R.id.txtNewDatePView);
         listVisitPluckers = (ListView) findViewById(R.id.listVisitPluckers);
+        txtSelectDate = (TextView) findViewById(R.id.txtSelectDate);
+
+        calendar=Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        txtSelectDate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        PreviousVisits.this, setListener,year,month,day
+                );
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                datePickerDialog.show();
+            }
+        });
+        setListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month+1;
+                date = year+"-"+month+"-"+dayOfMonth;
+                txtSelectDate.setText(date);
+
+                PreviousVisits.DoPreviiosVisits DoPreviiosVisits = new PreviousVisits.DoPreviiosVisits();
+                DoPreviiosVisits.execute();
+            }
+        };
 
         String date_n = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(new Date());   // get Current Date in this
         txtNewDatePView.setText(date_n);
@@ -115,11 +153,20 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
         protected String doInBackground(String... strings) {
 
             try {
+                VisitDetails = new ArrayList<VisitDetails>();
                 Connection con = connnectionClass.CONN();
                 if (con == null) {
                     z = "Please check your internet connection";
                 } else {
-                    String query = "SELECT s.supplier_id, cl.no_of_bags, s.supplier_name, cl.weight FROM supplier s,collection_log cl WHERE s.supplier_id = cl.supplier_id";
+                    String query;
+                    if(date != null) {
+                        query = "SELECT s.supplier_id, cl.no_of_bags, s.supplier_name, cl.weight FROM supplier s,collection_log cl WHERE s.supplier_id = cl.supplier_id AND cl.date BETWEEN TIMESTAMP('"+date+" 00:00:00') AND TIMESTAMP('"+date+" 23:59:59')";
+                        // AND cl.date  BETWEEN TIMESTAMP('2020-08-14 00:00:00') AND TIMESTAMP('2020-08-14 23:59:59')
+                    }
+                    else
+                    {
+                        query = "SELECT s.supplier_id, cl.no_of_bags, s.supplier_name, cl.weight FROM supplier s,collection_log cl WHERE s.supplier_id = cl.supplier_id";
+                    }
 
                     Statement stmt = con.createStatement();
 
@@ -141,7 +188,7 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getBaseContext(), "asdsadsadas", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), ""+z, Toast.LENGTH_LONG).show();
             listVisitPluckers.setAdapter(adapter1);
         }
     }

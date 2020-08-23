@@ -83,6 +83,7 @@ public class LoginForm extends AppCompatActivity {
                             pas = rs.getString(5);
                             pathid = rs.getInt(9);
 
+                            new Driver(driver_id,nme,pathid);
 
                             if (nme.equals(namestr) && pas.equals(passStr)) {
 
