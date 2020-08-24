@@ -6,17 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Mitch on 2016-05-06.
- */
-public class ThreeColumn_ListAdapter extends ArrayAdapter<Supplier> {
+
+public class ThreeColumn_ListAdapter extends ArrayAdapter<Supplier> implements Filterable {
 
     private LayoutInflater mInflater;
     private ArrayList<Supplier> suppliers;
+    private ArrayList<Supplier> mFilteredList;
     private int mViewResourceId;
 
     public ThreeColumn_ListAdapter(Context context, int textViewResourceId, ArrayList<Supplier> suppliers) {
@@ -24,6 +24,9 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<Supplier> {
         this.suppliers = suppliers;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewResourceId = textViewResourceId;
+
+
+
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {

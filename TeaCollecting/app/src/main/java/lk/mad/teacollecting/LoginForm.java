@@ -55,7 +55,7 @@ public class LoginForm extends AppCompatActivity {
         boolean isSucess = false;
 
         String nme, pas;
-        int pathid,driver_id;
+        int pathid, driver_id;
 
         @Override
         protected void onPreExecute() {
@@ -83,7 +83,7 @@ public class LoginForm extends AppCompatActivity {
                             pas = rs.getString(5);
                             pathid = rs.getInt(9);
 
-                            new Driver(driver_id,nme,pathid);
+                            new Driver(driver_id, nme, pathid);
 
                             if (nme.equals(namestr) && pas.equals(passStr)) {
 
@@ -105,7 +105,7 @@ public class LoginForm extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
+//            Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
 
             if (isSucess) {
                 Intent intent = new Intent(LoginForm.this, MainMenu.class);
@@ -114,8 +114,9 @@ public class LoginForm extends AppCompatActivity {
                 intent.putExtra("pathid", pathid);
 
                 startActivity(intent);
+            } else {
+                Toast.makeText(getBaseContext(), "Invalid Login Credintials Please Try Again", Toast.LENGTH_LONG).show();
             }
-
 
             progressDialog.hide();
         }

@@ -87,7 +87,9 @@ public class AddToList extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
-                AddToList.this.adapter.getFilter().filter(cs);
+                if (adapter != null) adapter.getFilter().filter(cs.toString());
+
+//                AddToList.this.adapter.getFilter().filter(cs);
             }
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
@@ -103,7 +105,7 @@ public class AddToList extends AppCompatActivity {
                 AddToList.DoAddVisit DoAddVisit = new AddToList.DoAddVisit();
                 DoAddVisit.execute();
 
-                Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Successfully Add to Visit", Toast.LENGTH_LONG).show();
             }
 
         });

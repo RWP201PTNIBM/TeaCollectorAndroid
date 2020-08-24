@@ -188,7 +188,6 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
 
         @Override
         protected void onPostExecute(String s) {
-            Toast.makeText(getBaseContext(), ""+z, Toast.LENGTH_LONG).show();
             listVisitPluckers.setAdapter(adapter1);
         }
     }
