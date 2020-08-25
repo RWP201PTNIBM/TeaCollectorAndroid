@@ -62,10 +62,6 @@ public class AddToList extends AppCompatActivity {
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
-
-
-
-
         txtNewDateView.setText(date_n);
         drivername = getIntent().getExtras().getString("name");
         pathid = getIntent().getExtras().getInt("pathid");
@@ -86,8 +82,17 @@ public class AddToList extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                if (adapter != null){
+                    adapter.getFilter().filter(cs.toString());
+                }
                 // When user changed the Text
+<<<<<<< Updated upstream
                 if (adapter != null) adapter.getFilter().filter(cs.toString());
+=======
+
+//                if (adapter != null) adapter.getFilter().filter(cs.toString());
+//                adapter.notifyDataSetChanged();
+>>>>>>> Stashed changes
 
 //                AddToList.this.adapter.getFilter().filter(cs);
             }

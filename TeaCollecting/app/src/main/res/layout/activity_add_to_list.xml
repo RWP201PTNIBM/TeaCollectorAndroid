@@ -58,7 +58,7 @@
         android:layout_height="49dp"
         android:background="@drawable/share_rounded_corner_with_border"
         android:ems="10"
-        android:hint="Plukcer ID"
+        android:hint="Plukcer Name"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

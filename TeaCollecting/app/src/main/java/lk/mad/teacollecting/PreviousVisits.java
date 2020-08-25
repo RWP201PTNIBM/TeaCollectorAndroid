@@ -8,9 +8,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -33,6 +36,7 @@ public class PreviousVisits extends AppCompatActivity {
     ConnnectionClass connnectionClass;
     ProgressDialog progressDialog;
     TextView txtNewVistPName, txtNewDatePView, txtSelectDate;
+    EditText txtVisitPlucker;
     int pathid;
     String drivername;
     String pathnametext;
@@ -54,6 +58,7 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
         progressDialog = new ProgressDialog(this);
         txtNewVistPName = (TextView) findViewById(R.id.txtNewVistPName);
         txtNewDatePView = (TextView) findViewById(R.id.txtNewDatePView);
+        txtVisitPlucker = (EditText) findViewById(R.id.txtVisitPlucker);
         listVisitPluckers = (ListView) findViewById(R.id.listVisitPluckers);
         txtSelectDate = (TextView) findViewById(R.id.txtSelectDate);
 
@@ -94,8 +99,26 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
 
         PreviousVisits.DoPreviiosVisits DoPreviiosVisits = new PreviousVisits.DoPreviiosVisits();
         DoPreviiosVisits.execute();
+        txtVisitPlucker.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (adapter1 != null){
+                    adapter1.getFilter().filter(s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
+
     public class DoPrevoisList extends AsyncTask<String, String, String> {
 
         String z = "";
