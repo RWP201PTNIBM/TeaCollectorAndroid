@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainMenu extends AppCompatActivity {
 
-    Button path, visits, newVisits, startCollecting;
+    Button path, visits, newVisits, startCollecting, logout;
     TextView txtname;
     int pathid,driver_id;
     String drivername;
@@ -26,6 +26,7 @@ public class MainMenu extends AppCompatActivity {
         txtname = (TextView) findViewById(R.id.txtname);
         path = (Button) findViewById(R.id.btnPath);
         visits = (Button) findViewById(R.id.btnVisits);
+        logout = (Button) findViewById(R.id.btnlogout);
         newVisits = (Button) findViewById(R.id.btnNeWVisit);
         startCollecting = (Button) findViewById(R.id.btnstrtcol);
         drivername = getIntent().getExtras().getString("name");
@@ -75,6 +76,12 @@ public class MainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this, LoginForm.class);
+                startActivity(intent);
+            }
+        });
     }
 }
