@@ -71,28 +71,43 @@
 
     <TextView
         android:id="@+id/txtSelectDate"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_width="170dp"
+        android:layout_height="37dp"
         android:fontFamily="@font/gothame"
         android:gravity="center"
-        android:text="Select Date"
-        android:textColor="#FFFFFF"
+        android:text="Select Date Here"
+        android:textColor="#E2AF4125"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.335" />
 
     <ListView
         android:id="@+id/listVisitPluckers"
-        android:layout_width="506dp"
-        android:layout_height="416dp"
+        android:layout_width="409dp"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="411dp"
+        android:layout_height="35dp"
+        android:fontFamily="@font/gothame"
+        android:gravity="center_vertical"
+        android:text=" Supplier ID    Supplier Name   No of Kilogram   Tea Bags"
+        android:textColor="#D6C62F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.441" />
 </androidx.constraintlayout.widget.ConstraintLayout>

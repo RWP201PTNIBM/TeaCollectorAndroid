@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,14 +14,47 @@ public class Four_cloumn_list_adpter extends ArrayAdapter<VisitDetails> {
     private LayoutInflater mInflater;
     private ArrayList<VisitDetails> visitDetails;
     private int mViewResourceId;
+    private ArrayList<VisitDetails> mFilteredList;
 
     public Four_cloumn_list_adpter(Context context, int textViewResourceId, ArrayList<VisitDetails> visitDetails) {
         super(context, textViewResourceId, visitDetails);
         this.visitDetails = visitDetails;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewResourceId = textViewResourceId;
+        mFilteredList = visitDetails;
     }
-
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    mFilteredList = visitDetails;
+                } else {
+                    ArrayList<VisitDetails> filteredList = new ArrayList<>();
+                    for (VisitDetails visitDetail : visitDetails) {
+                        if ( visitDetail.getSup_Name().contains(charString)) {
+                            filteredList.add(visitDetail);
+                        }
+                    }
+                    mFilteredList = filteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilteredList = (ArrayList<VisitDetails>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+    @Override
+    public int getCount(){
+        return mFilteredList!=null ? mFilteredList.size() : 0;
+    }
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(mViewResourceId, null);
 

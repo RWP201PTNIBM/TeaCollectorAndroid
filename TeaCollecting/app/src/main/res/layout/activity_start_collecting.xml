@@ -10,8 +10,8 @@
     <fragment
         android:id="@+id/startMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="414dp"
-        android:layout_height="434dp"
+        android:layout_width="444dp"
+        android:layout_height="425dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.727"
@@ -20,14 +20,30 @@
         app:layout_constraintVertical_bias="0.0"
         tools:context=".MapsActivity" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="411dp"
+        android:layout_height="35dp"
+        android:fontFamily="@font/gothame"
+        android:gravity="center_vertical"
+        android:text=" Supplier ID           Supplier Name        Supplier Address"
+        android:textColor="#D6C62F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.718" />
+
     <ListView
         android:id="@+id/startMapList"
-        android:layout_width="410dp"
-        android:layout_height="234dp"
+        android:layout_width="455dp"
+        android:layout_height="171dp"
         android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startMap" />
+        app:layout_constraintTop_toBottomOf="@+id/startMap"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

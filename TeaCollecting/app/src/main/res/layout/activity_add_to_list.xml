@@ -58,7 +58,7 @@
         android:layout_height="49dp"
         android:background="@drawable/share_rounded_corner_with_border"
         android:ems="10"
-        android:hint="Plukcer ID"
+        android:hint="Plukcer Name"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,10 +67,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.247" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="411dp"
+        android:layout_height="35dp"
+        android:fontFamily="@font/gothame"
+        android:gravity="center_vertical"
+        android:text=" Supplier ID           Supplier Name        Supplier Address"
+        android:textColor="#D6C62F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.375" />
+
     <ListView
         android:id="@+id/listPluckers"
-        android:layout_width="410dp"
-        android:layout_height="400dp"
+        android:layout_width="423dp"
+        android:layout_height="398dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
