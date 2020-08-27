@@ -139,7 +139,7 @@ public class SaveVisit extends AppCompatActivity {
                         String query2 = "UPDATE visit SET status = 1 WHERE visit_id = "+ visit_id +" ";
                         Statement stmt2 = con.createStatement();
                         stmt2.executeUpdate(query2);
-                        z = "Register successfull";
+                        z = "Successful";
                         isSucess = true;
                     }
                 } catch (Exception ex) {
@@ -154,7 +154,7 @@ public class SaveVisit extends AppCompatActivity {
             if (isSucess) {
                 Toast.makeText(getBaseContext(), "" + z, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(SaveVisit.this, MainMenu.class);
+                Intent intent = new Intent(SaveVisit.this, startCollecting.class);
                 intent.putExtra("driver_id", driver_id);
                 intent.putExtra("pathid", path_id);
                 startActivity(intent);

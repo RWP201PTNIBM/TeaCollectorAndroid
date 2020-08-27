@@ -154,4 +154,15 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
 //
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent intent = new Intent(startCollecting.this, MainMenu.class);
+        intent.putExtra("driver_id", driver_id);
+        intent.putExtra("pathid", pathid);
+        startActivity(intent);
+    }
+
 }

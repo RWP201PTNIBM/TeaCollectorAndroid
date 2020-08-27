@@ -86,13 +86,9 @@ public class AddToList extends AppCompatActivity {
                     adapter.getFilter().filter(cs.toString());
                 }
                 // When user changed the Text
-<<<<<<< Updated upstream
                 if (adapter != null) adapter.getFilter().filter(cs.toString());
-=======
-
 //                if (adapter != null) adapter.getFilter().filter(cs.toString());
 //                adapter.notifyDataSetChanged();
->>>>>>> Stashed changes
 
 //                AddToList.this.adapter.getFilter().filter(cs);
             }

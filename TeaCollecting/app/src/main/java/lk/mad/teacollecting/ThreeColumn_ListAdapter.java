@@ -15,14 +15,9 @@ import java.util.ArrayList;
 public class ThreeColumn_ListAdapter extends ArrayAdapter<Supplier> implements Filterable {
 
     private LayoutInflater mInflater;
-<<<<<<< Updated upstream
     private ArrayList<Supplier> suppliers;
     private ArrayList<Supplier> mFilteredList;
-=======
-        private ArrayList<Supplier> suppliers;
-    private ArrayList<Supplier> mFilteredList;
 
->>>>>>> Stashed changes
     private int mViewResourceId;
 
     public ThreeColumn_ListAdapter(Context context, int textViewResourceId, ArrayList<Supplier> suppliers) {
@@ -30,11 +25,6 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<Supplier> implements F
         this.suppliers = suppliers;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewResourceId = textViewResourceId;
-<<<<<<< Updated upstream
-
-
-
-=======
         mFilteredList = suppliers;
     }
     @Override
@@ -68,7 +58,6 @@ public class ThreeColumn_ListAdapter extends ArrayAdapter<Supplier> implements F
     @Override
     public int getCount(){
         return mFilteredList!=null ? mFilteredList.size() : 0;
->>>>>>> Stashed changes
     }
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(mViewResourceId, null);

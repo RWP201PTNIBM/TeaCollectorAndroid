@@ -82,7 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     while (rs.next()) {
-                        Location locate = new Location(Double.parseDouble(rs.getString(4)), Double.parseDouble(rs.getString(3)));
+                        Location locate = new Location(Double.parseDouble(rs.getString(4)), Double.parseDouble(rs.getString(3)), rs.getString(2));
                         listLanLong.add(locate);
                     }
                     while (rs2.next()) {
@@ -107,7 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             for (int i = 0; i < listLanLong.size(); i++) {
                 Log.e("", "--------jjj");
                 LatLng sydny = new LatLng(listLanLong.get(i).getLat(), listLanLong.get(i).getLon());
-                mMap.addMarker(new MarkerOptions().position(sydny).title("Marker in Akuressa " + i));
+                mMap.addMarker(new MarkerOptions().position(sydny).title(listLanLong.get(i).getName()));
 //                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydny));
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydny, zoomLevel));
 
