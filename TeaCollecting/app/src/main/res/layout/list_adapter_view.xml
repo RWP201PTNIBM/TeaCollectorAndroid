@@ -10,7 +10,7 @@ android:layout_gravity="center"    >
     <TextView
         android:id="@+id/textSupId"
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:layout_weight="33"
         android:fontFamily="@font/gothame"
         android:textColor="#FFFFFF"
@@ -24,7 +24,7 @@ android:layout_gravity="center"    >
 
         android:id="@+id/textSupName"
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:layout_weight="33"
         android:fontFamily="@font/gothame"
         android:textColor="#FFFFFF"
@@ -39,6 +39,6 @@ android:layout_gravity="center"    >
         android:fontFamily="@font/gothame"
         android:textColor="#FFFFFF"
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:id="@+id/textSupAdd"/>
 </LinearLayout>
