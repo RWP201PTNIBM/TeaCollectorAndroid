@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/textSupId"
         android:layout_width="10dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="33"
         android:fontFamily="@font/gothame"
@@ -26,7 +26,7 @@
 
         android:id="@+id/textSupName"
         android:layout_width="20dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:layout_weight="33"
         android:fontFamily="@font/gothame"
         android:textColor="#FFFFFF"
@@ -39,14 +39,14 @@
         android:fontFamily="@font/gothame"
         android:textColor="#FFFFFF"
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:id="@+id/textwieght"/>
 
     <TextView
         android:id="@+id/textteabags"
 
         android:layout_width="40dp"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:layout_weight="33"
         android:fontFamily="@font/gothame"
         android:paddingTop="25dp"
