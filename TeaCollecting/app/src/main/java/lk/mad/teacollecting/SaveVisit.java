@@ -26,7 +26,7 @@ public class SaveVisit extends AppCompatActivity {
     EditText txtTeaBags, txtWeight;
     Button btnok;
     String supplier_name, date_to, pathnametext;
-    int path_id, supplier_id, visit_id,driver_id;
+    int path_id, supplier_id, visit_id, driver_id;
     ConnnectionClass connnectionClass;
     ProgressDialog progressDialog;
 
@@ -115,8 +115,8 @@ public class SaveVisit extends AppCompatActivity {
 
     public class Doregister extends AsyncTask<String, String, String> {
 
-        int teaBags = Integer.parseInt(txtTeaBags.getText().toString());
-        double teaWeight = Double.parseDouble(txtWeight.getText().toString());
+        //        int teaBags = Integer.parseInt(txtTeaBags.getText().toString());
+//        double teaWeight = Double.parseDouble(txtWeight.getText().toString());
         String z = "";
         boolean isSucess = false;
 
@@ -127,16 +127,27 @@ public class SaveVisit extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+
+            String namestr = txtTeaBags.getText().toString();
+            String passStr = txtWeight.getText().toString();
+            
+            if (namestr.trim().equals("") || passStr.trim().equals(""))
+                z = "Please enter all fields....";
+            else {
                 try {
                     Connection con = connnectionClass.CONN();
                     if (con == null) {
                         z = "Please check your internet connection";
                     } else {
-                        String query = "insert into collection_log(`supplier_id`,`weight`, `no_of_bags`, `status`, `visit_id`) values('" + supplier_id + "','" + teaWeight + "','" + teaBags + "',0,"+ visit_id +");";
+
+                        int teaBags = Integer.parseInt(namestr);
+                        double teaWeight = Double.parseDouble(passStr);
+
+                        String query = "insert into collection_log(`supplier_id`,`weight`, `no_of_bags`, `status`, `visit_id`) values('" + supplier_id + "','" + teaWeight + "','" + teaBags + "',0," + visit_id + ");";
                         Statement stmt = con.createStatement();
                         stmt.executeUpdate(query);
 
-                        String query2 = "UPDATE visit SET status = 1 WHERE visit_id = "+ visit_id +" ";
+                        String query2 = "UPDATE visit SET status = 1 WHERE visit_id = " + visit_id + " ";
                         Statement stmt2 = con.createStatement();
                         stmt2.executeUpdate(query2);
                         z = "Successful";
@@ -146,6 +157,7 @@ public class SaveVisit extends AppCompatActivity {
                     isSucess = false;
                     z = "Exceptions" + ex;
                 }
+            }
             return z;
         }
 
@@ -158,11 +170,12 @@ public class SaveVisit extends AppCompatActivity {
                 intent.putExtra("driver_id", driver_id);
                 intent.putExtra("pathid", path_id);
                 startActivity(intent);
+            } else {
+                Toast.makeText(getBaseContext(), "Invalid Input Please Try Again", Toast.LENGTH_LONG).show();
             }
             progressDialog.hide();
         }
     }
-
 
 
 }
