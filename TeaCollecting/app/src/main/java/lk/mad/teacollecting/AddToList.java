@@ -57,7 +57,7 @@ public class AddToList extends AppCompatActivity {
         txtNewVistName = (TextView) findViewById(R.id.txtNewVistName);
         txtNewDateView = (TextView) findViewById(R.id.txtNewDateView);
         txtPlucker = (EditText) findViewById(R.id.txtPlucker);
-          date_n = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());   // get Current Date in this
+        date_n = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault()).format(new Date());   // get Current Date in this
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
