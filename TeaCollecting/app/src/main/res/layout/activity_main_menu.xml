@@ -59,7 +59,7 @@
         android:layout_height="45dp"
         android:background="@drawable/mainall_button"
         android:fontFamily="@font/gothame"
-        android:text="Previous Visit Log"
+        android:text="Previous Visits"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

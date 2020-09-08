@@ -96,6 +96,9 @@ ArrayList<VisitDetails> VisitDetails = new ArrayList<VisitDetails>();
         pathid = getIntent().getExtras().getInt("pathid");
         PreviousVisits.DoPrevoisList DoPrevoisList = new PreviousVisits.DoPrevoisList();
         DoPrevoisList.execute();
+
+        PreviousVisits.DoPreviiosVisits DoPreviiosVisits = new PreviousVisits.DoPreviiosVisits();
+        DoPreviiosVisits.execute();
         txtVisitPlucker.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

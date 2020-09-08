@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Four_cloumn_list_adpter extends ArrayAdapter<VisitDetails> {
+public class Four_cloumn_list_adpter extends ArrayAdapter<VisitDetails> implements Filterable {
     private LayoutInflater mInflater;
     private ArrayList<VisitDetails> visitDetails;
     private int mViewResourceId;
@@ -58,7 +59,7 @@ public class Four_cloumn_list_adpter extends ArrayAdapter<VisitDetails> {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = mInflater.inflate(mViewResourceId, null);
 
-        VisitDetails visitDetail = visitDetails.get(position);
+        VisitDetails visitDetail = mFilteredList.get(position);
 
         if (visitDetail != null) {
             TextView sup_id = (TextView) convertView.findViewById(R.id.textSupId);
