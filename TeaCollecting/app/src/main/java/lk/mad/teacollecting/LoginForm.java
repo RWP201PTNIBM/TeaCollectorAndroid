@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Connection;
@@ -18,6 +20,7 @@ import java.sql.Statement;
 
 public class LoginForm extends AppCompatActivity {
     EditText name, pass;
+    TextView txtForget;
     Button login;
     ProgressDialog progressDialog;
     ConnnectionClass connnectionClass;
@@ -31,6 +34,7 @@ public class LoginForm extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         name = (EditText) findViewById(R.id.txtEmail);
+        txtForget = (TextView) findViewById(R.id.forgetpassowrdText);
         pass = (EditText) findViewById(R.id.txtPass);
         login = (Button) findViewById(R.id.btnlogin);
 
@@ -45,7 +49,19 @@ public class LoginForm extends AppCompatActivity {
                 doregister.execute();
             }
         });
+        txtForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:0728887599"));
+                startActivity(intent);
+            }
+        });
+
     }
+
+
+
 
     public class DoLogin extends AsyncTask<String, String, String> {
 
