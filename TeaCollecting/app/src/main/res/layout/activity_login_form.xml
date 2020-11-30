@@ -41,7 +41,7 @@
         android:layout_height="47dp"
         android:fontFamily="@font/gothame"
         android:gravity="center"
-        android:text="Forget Password"
+        android:text="Any Login Problem ?"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="15sp"

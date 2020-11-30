@@ -101,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         protected void onPostExecute(String s) {
-            float zoomLevel =8.0f;
+            float zoomLevel =10.0f;
             txtpathname.setText(pathnametext);
 
             for (int i = 0; i < listLanLong.size(); i++) {

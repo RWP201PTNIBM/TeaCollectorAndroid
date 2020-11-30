@@ -25,6 +25,7 @@ public class LoginForm extends AppCompatActivity {
     ProgressDialog progressDialog;
     ConnnectionClass connnectionClass;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,8 @@ public class LoginForm extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() { }
 
 
     public class DoLogin extends AsyncTask<String, String, String> {

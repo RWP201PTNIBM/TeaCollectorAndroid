@@ -74,6 +74,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+
     public class DSupplierList extends AsyncTask<String, String, String> {
         String z = "";
         boolean isSucess = false;
@@ -123,7 +124,7 @@ public class startCollecting extends FragmentActivity implements OnMapReadyCallb
 
         @Override
         protected void onPostExecute(String s) {
-            float zoomLevel = 9.0f;
+            float zoomLevel = 10.0f;
 
             startListView.setAdapter(adapter);
 
